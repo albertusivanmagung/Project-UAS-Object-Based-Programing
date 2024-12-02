@@ -1,0 +1,93 @@
+<!DOCTYPE html> <!-- Mendeklarasikan tipe dokumen HTML -->
+<html lang="id"> <!-- Menentukan bahasa halaman web adalah bahasa Indonesia -->
+    <head>
+        <meta charset="UTF-8"> <!-- Menentukan encoding karakter yang digunakan -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mengatur tampilan agar responsif pada perangkat mobile -->
+        <link rel="stylesheet" th:href="@{/css/styles.css}"> <!-- Menghubungkan file CSS untuk styling (menggunakan Thymeleaf) -->
+        <title>Dashboard Customer - Money Changer</title> <!-- Menentukan judul halaman web -->
+        <script th:src="@{/js/customer-dashboard.js}" defer></script> <!-- Menghubungkan file JavaScript untuk fungsionalitas halaman (menggunakan Thymeleaf) -->
+    </head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar"> <!-- Membuat navbar (navigasi) -->
+    <h1 style="display: flex; align-items: center; gap: 10px;"> <!-- Menampilkan logo dan judul dengan tampilan fleksibel -->
+        <img src="/images/logo.png" style="width: 12%;"> <!-- Menampilkan logo dengan ukuran 12% dari lebar -->
+        Money Changer <!-- Teks judul halaman -->
+    </h1>
+    <div>
+        <!-- Menu navigasi untuk menuju halaman lain -->
+        <a href="/" style="text-decoration: none; color: white; padding-right: 30px;">HOME</a> <!-- Link ke halaman Home -->
+        <a href="/customer" style="text-decoration: none; color: white; padding-right: 30px;">CUSTOMER</a> <!-- Link ke halaman Customer -->
+        <a href="/admin" style="text-decoration: none; color: white; padding-right: 30px;">ADMIN</a> <!-- Link ke halaman Admin -->
+        <a href="/profil" style="text-decoration: none; color: white;">PROFIL</a> <!-- Link ke halaman Profil -->
+    </div>
+</div>
+
+<!-- Currency Exchange Rates -->
+<div id="exchangeRates" style="padding: 20px;"> <!-- Menampilkan informasi kurs mata uang -->
+    <h2>Kurs Mata Uang Hari Ini</h2> <!-- Judul untuk tabel kurs mata uang -->
+    <table border="1" cellpadding="10" style="width: 100%; text-align: left;"> <!-- Tabel kurs mata uang -->
+        <thead>
+            <tr>
+                <th>Mata Uang</th> <!-- Kolom untuk nama mata uang -->
+                <th>Beli</th> <!-- Kolom untuk harga beli -->
+                <th>Jual</th> <!-- Kolom untuk harga jual -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="rate : ${currencyRates}"> <!-- Iterasi setiap data kurs mata uang -->
+                <td th:text="${rate.mataUang}"></td> <!-- Menampilkan nama mata uang -->
+                <td th:text="${rate.beli}"></td> <!-- Menampilkan harga beli -->
+                <td th:text="${rate.jual}"></td> <!-- Menampilkan harga jual -->
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 style="padding-top: 20px;">Pilih Transaksi</h3> <!-- Judul untuk pilihan transaksi -->
+    <form action="/customer/transaction" method="post"> <!-- Form untuk melakukan transaksi -->
+        <div style="display: flex; gap: 10px; margin-bottom: 10px; padding-top: 10px;"> <!-- Membuat baris inputan dengan tampilan fleksibel -->
+            <select name="transactionType" id="transactionType" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;"> <!-- Dropdown untuk memilih jenis transaksi -->
+                <option value="beli">Beli</option> <!-- Pilihan transaksi beli -->
+                <option value="jual">Jual</option> <!-- Pilihan transaksi jual -->
+            </select>
+    
+            <select name="sourceCurrency" id="sourceCurrency" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;" required> <!-- Dropdown untuk memilih mata uang asal -->
+                <option value="" disabled selected>Pilih Mata Uang Asal</option> <!-- Pilihan default untuk mata uang asal -->
+                <option th:each="rate : ${currencyRates}" th:value="${rate.mataUang}" th:text="${rate.mataUang}"></option> <!-- Iterasi untuk menampilkan mata uang asal -->
+            </select>
+            
+            <select name="targetCurrency" id="targetCurrency" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;" required> <!-- Dropdown untuk memilih mata uang tujuan -->
+                <option value="" disabled selected>Pilih Mata Uang Tujuan</option> <!-- Pilihan default untuk mata uang tujuan -->
+                <option th:each="rate : ${currencyRates}" th:value="${rate.mataUang}" th:text="${rate.mataUang}"></option> <!-- Iterasi untuk menampilkan mata uang tujuan -->
+            </select>            
+        </div>
+    
+        <input type="number" id="amount" name="nominal" placeholder="Nominal" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px; width: 37%;" required> <!-- Input untuk nominal transaksi -->
+        <button type="button" onclick="showConvertedAmount()">Konversi</button> <!-- Tombol untuk menghitung nominal konversi -->
+        <h3 style="margin-top: 20px;">Nominal Konversi: <span id="convertedAmount" style="font-weight: bold; color: #333;"></span></h3> <!-- Menampilkan hasil konversi nominal -->
+    
+        <h3 style="padding-top: 20px; padding-bottom: 10px;">Pilih Metode Transaksi</h3> <!-- Judul untuk memilih metode transaksi -->
+        <div>
+            <select name="paymentMethod" id="paymentMethod" style="padding: 8px; padding-top: 10px; padding-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;" onchange="togglePaymentFields()"> <!-- Dropdown untuk memilih metode transaksi (cash atau ewallet) -->
+                    <option value="" disabled selected>Metode Transaksi</option> <!-- Pilihan default untuk metode transaksi -->
+                    <option value="cash">Cash</option> <!-- Pilihan transaksi cash -->
+                    <option value="ewallet">E-Wallet</option> <!-- Pilihan transaksi e-wallet -->
+            </select>
+        
+            <div id="cashInfo" style="display:none; padding-top: 10px;"> <!-- Menampilkan informasi untuk transaksi cash -->
+                <p><strong>Silakan datang langsung ke outlet Money Changer untuk transaksi Cash.</strong></p>
+            </div>
+        
+            <div id="ewalletInfo" style="display:none; padding-top: 10px;"> <!-- Menampilkan informasi untuk transaksi e-wallet -->
+                <h3>Silahkan masukkan nomor rekening</h3>
+                <input type="text" name="accountNumber" id="ewalletNumber" placeholder="Nomor Rekening E-Wallet" 
+                       style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;" 
+                       pattern="\d*" title="Hanya angka yang diperbolehkan" oninput="validateAccountNumber(event)" required> <!-- Input untuk nomor rekening e-wallet -->
+            </div>            
+        </div>
+        <button type="submit">Konfirmasi Transaksi</button> <!-- Tombol untuk mengkonfirmasi transaksi -->
+    </form>    
+
+</body>
+</html>

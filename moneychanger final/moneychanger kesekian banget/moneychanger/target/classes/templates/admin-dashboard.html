@@ -1,0 +1,61 @@
+<!DOCTYPE html> <!-- Mendeklarasikan tipe dokumen HTML -->
+<html lang="id"> <!-- Menentukan bahasa halaman web adalah bahasa Indonesia -->
+<head>
+    <meta charset="UTF-8"> <!-- Menentukan encoding karakter yang digunakan -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mengatur tampilan agar responsif pada perangkat mobile -->
+    <title>Dashboard - Money Changer</title> <!-- Menentukan judul halaman web -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}"> <!-- Menghubungkan file CSS untuk styling (menggunakan Thymeleaf) -->
+</head>
+<body>
+    <!-- Navbar (Navigasi) -->
+    <div class="navbar">
+        <h1 style="display: flex; align-items: center; gap: 10px;"> <!-- Menampilkan judul dengan logo di samping -->
+            <img src="/images/logo.png" style="width: 12%;"> <!-- Menampilkan logo dengan ukuran 12% dari lebar -->
+            Money Changer <!-- Teks judul halaman -->
+        </h1>
+        <div>
+            <!-- Tautan menu navigasi -->
+            <a href="/" style="text-decoration: none; color: white; padding-right: 30px;">HOME</a> <!-- Link ke halaman Home -->
+            <a href="/customer" style="text-decoration: none; color: white; padding-right: 30px;">CUSTOMER</a> <!-- Link ke halaman Customer -->
+            <a href="/admin" style="text-decoration: none; color: white; padding-right: 30px;">ADMIN</a> <!-- Link ke halaman Admin -->
+            <a href="/profil" style="text-decoration: none; color: white;">PROFIL</a> <!-- Link ke halaman Profil -->
+        </div>
+    </div>
+
+    <!-- Bagian untuk menampilkan data transaksi -->
+    <div class="adminData">
+        <h2>Data Penukaran Uang</h2> <!-- Judul bagian data transaksi -->
+        <table> <!-- Membuat tabel untuk menampilkan data transaksi -->
+            <thead> <!-- Bagian untuk mendefinisikan kolom tabel -->
+                <tr>
+                    <th>ID Transaksi</th> <!-- Kolom ID Transaksi -->
+                    <th>ID Customer</th> <!-- Kolom ID Customer -->
+                    <th>Nama Customer</th> <!-- Kolom Nama Customer -->
+                    <th>Tipe Transaksi</th> <!-- Kolom Tipe Transaksi -->
+                    <th>Mata Uang Asal</th> <!-- Kolom Mata Uang Asal -->
+                    <th>Mata Uang Tujuan</th> <!-- Kolom Mata Uang Tujuan -->
+                    <th>Nominal</th> <!-- Kolom Nominal -->
+                    <th>Nominal Setelah Konversi</th> <!-- Kolom Nominal Setelah Konversi -->
+                    <th>Jenis Transaksi</th> <!-- Kolom Jenis Transaksi -->
+                    <th>Nomor Rekening</th> <!-- Kolom Nomor Rekening -->
+                </tr>
+            </thead>
+            <tbody> <!-- Bagian untuk menampilkan data transaksi -->
+                <!-- Menampilkan data transaksi menggunakan Thymeleaf -->
+                <tr th:each="transaction : ${transactions}"> <!-- Loop untuk setiap transaksi -->
+                    <td th:text="${transaction.idTransaksi}"></td> <!-- Menampilkan ID Transaksi -->
+                    <td th:text="${transaction.customerId}"></td> <!-- Menampilkan ID Customer -->
+                    <td th:text="${transaction.customerName}"></td> <!-- Menampilkan Nama Customer -->
+                    <td th:text="${transaction.tipeTransaksi}"></td> <!-- Menampilkan Tipe Transaksi -->
+                    <td th:text="${transaction.mataUangAsal}"></td> <!-- Menampilkan Mata Uang Asal -->
+                    <td th:text="${transaction.targetCurrency}"></td> <!-- Menampilkan Mata Uang Tujuan -->
+                    <td th:text="${transaction.nominal}"></td> <!-- Menampilkan Nominal -->
+                    <td th:text="${transaction.nominalKonversi}"></td> <!-- Menampilkan Nominal Setelah Konversi -->
+                    <td th:text="${transaction.jenisTransaksi}"></td> <!-- Menampilkan Jenis Transaksi -->
+                    <td th:text="${transaction.nomorRekening}"></td> <!-- Menampilkan Nomor Rekening -->
+                </tr>
+            </tbody>            
+        </table>
+    </div>
+</body>
+</html>

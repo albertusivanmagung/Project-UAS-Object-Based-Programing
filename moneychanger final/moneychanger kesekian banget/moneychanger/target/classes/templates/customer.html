@@ -1,0 +1,42 @@
+<!DOCTYPE html> <!-- Mendeklarasikan tipe dokumen HTML -->
+<html lang="id"> <!-- Menentukan bahasa halaman web adalah bahasa Indonesia -->
+<head>
+    <meta charset="UTF-8"> <!-- Menentukan encoding karakter yang digunakan -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mengatur tampilan agar responsif pada perangkat mobile -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}"> <!-- Menghubungkan file CSS untuk styling (menggunakan Thymeleaf) -->
+    <title>Login Customer - Money Changer</title> <!-- Menentukan judul halaman web -->
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar"> <!-- Membuat navbar (navigasi) -->
+    <h1 style="display: flex; align-items: center; gap: 10px;"> <!-- Menampilkan logo dan judul dengan tampilan fleksibel -->
+        <img src="/images/logo.png" style="width: 12%;"> <!-- Menampilkan logo dengan ukuran 12% dari lebar -->
+        Money Changer <!-- Teks judul halaman -->
+    </h1>
+    <div>
+        <!-- Menu navigasi untuk menuju halaman lain -->
+        <a href="/" style="text-decoration: none; color: white; padding-right: 30px;">HOME</a> <!-- Link ke halaman Home -->
+        <a href="/customer" style="text-decoration: none; color: white; padding-right: 30px;">CUSTOMER</a> <!-- Link ke halaman Customer -->
+        <a href="/admin" style="text-decoration: none; color: white; padding-right: 30px;">ADMIN</a> <!-- Link ke halaman Admin -->
+        <a href="/profil" style="text-decoration: none; color: white;">PROFIL</a> <!-- Link ke halaman Profil -->
+    </div>
+</div>
+
+<!-- Customer Login -->
+<div id="customerSection" style="padding: 20px;"> <!-- Section untuk form login customer -->
+    <form id="customerLogin" action="/customer/login" method="post" class="centered-form" display="block"> <!-- Form untuk login customer -->
+        <h2 style="padding-bottom: 20px;">Login sebagai Customer</h2> <!-- Judul form login -->
+        <input type="text" name="email" placeholder="Email" required> <!-- Input untuk email -->
+        <input style="margin-bottom: 20px;" type="password" name="password" placeholder="Password" required> <!-- Input untuk password -->
+        <p style="margin-top: 15px; margin-bottom: 15px;"> <!-- Teks untuk link pendaftaran -->
+            Belum mempunyai akun? <a href="/customer/register" style="text-decoration: none; color: #7ec6d4;">Buat disini</a> <!-- Link untuk mendaftar jika belum punya akun -->
+        </p>
+        <button type="submit">Login</button> <!-- Tombol untuk mengirim form login -->
+        <p style="color: red;" th:text="${error}"></p> <!-- Menampilkan pesan error jika ada -->
+    </form>
+    
+</div>
+
+</body>
+</html>

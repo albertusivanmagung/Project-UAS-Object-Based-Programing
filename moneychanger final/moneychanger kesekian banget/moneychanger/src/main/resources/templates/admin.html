@@ -1,0 +1,38 @@
+<!DOCTYPE html> <!-- Mendeklarasikan tipe dokumen HTML -->
+<html lang="id"> <!-- Menentukan bahasa halaman web adalah bahasa Indonesia -->
+<head>
+    <meta charset="UTF-8"> <!-- Menentukan encoding karakter yang digunakan -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mengatur tampilan agar responsif pada perangkat mobile -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}"> <!-- Menghubungkan file CSS untuk styling (menggunakan Thymeleaf) -->
+    <title>Login Admin - Money Changer</title> <!-- Menentukan judul halaman web -->
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar"> <!-- Membuat navbar (navigasi) -->
+    <h1 style="display: flex; align-items: center; gap: 10px;"> <!-- Menampilkan logo dan judul dengan tampilan fleksibel -->
+        <img src="/images/logo.png" style="width: 12%;"> <!-- Menampilkan logo dengan ukuran 12% dari lebar -->
+        Money Changer <!-- Teks judul halaman -->
+    </h1>
+    <div>
+        <!-- Menu navigasi untuk menuju halaman lain -->
+        <a href="/" style="text-decoration: none; color: white; padding-right: 30px;">HOME</a> <!-- Link ke halaman Home -->
+        <a href="/customer" style="text-decoration: none; color: white; padding-right: 30px;">CUSTOMER</a> <!-- Link ke halaman Customer -->
+        <a href="/admin" style="text-decoration: none; color: white; padding-right: 30px;">ADMIN</a> <!-- Link ke halaman Admin -->
+        <a href="/profil" style="text-decoration: none; color: white;">PROFIL</a> <!-- Link ke halaman Profil -->
+    </div>
+</div>
+
+<!-- Bagian Form Login Admin -->
+<div id="adminSection" style="padding: 20px;"> <!-- Div yang membungkus form login admin -->
+    <form id="adminLogin" action="/admin/login" method="post" class="centered-log" style="display: block;"> <!-- Form login dengan method POST -->
+        <h2 style="padding-bottom: 20px; text-align: center;">Login sebagai Admin</h2> <!-- Judul form login -->
+        <input type="text" name="username" placeholder="Username" required> <!-- Input untuk username -->
+        <input style="margin-bottom: 20px;" type="password" name="password" placeholder="Password" required> <!-- Input untuk password -->
+        <button type="submit">Login</button> <!-- Tombol untuk mengirim form -->
+        <p style="color: red;" th:text="${error}"></p> <!-- Menampilkan pesan error jika ada (menggunakan Thymeleaf) -->
+    </form>
+</div>
+
+</body>
+</html>

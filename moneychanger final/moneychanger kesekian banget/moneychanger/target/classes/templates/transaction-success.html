@@ -1,0 +1,69 @@
+<!DOCTYPE html> <!-- Mendeklarasikan tipe dokumen HTML -->
+<html lang="id"> <!-- Menentukan bahasa halaman web adalah bahasa Indonesia -->
+<head>
+    <meta charset="UTF-8"> <!-- Menentukan encoding karakter yang digunakan -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mengatur tampilan agar responsif pada perangkat mobile -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}"> <!-- Menghubungkan file CSS untuk styling (menggunakan Thymeleaf) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> <!-- Menghubungkan ikon Bootstrap dari CDN -->
+    <title>Money Changer - Transaksi Berhasil</title> <!-- Menentukan judul halaman -->
+</head>
+
+<body>
+    <div class="navbar"> <!-- Membuat navbar (navigasi) -->
+        <h1 style="display: flex; align-items: center; gap: 10px;"> <!-- Menampilkan logo dan judul dengan tampilan fleksibel -->
+            <img src="images/logo.png" style="width: 12%;"> <!-- Menampilkan logo dengan ukuran 12% dari lebar -->
+            Money Changer <!-- Teks judul halaman -->
+        </h1>
+
+        <div>
+            <!-- Menu navigasi untuk menuju halaman lain -->
+            <a th:href="@{/home}" style="text-decoration: none; color: white; padding-right: 30px;">HOME</a> <!-- Link ke halaman Home -->
+            <a th:href="@{/customer}" style="text-decoration: none; color: white; padding-right: 30px;">CUSTOMER</a> <!-- Link ke halaman Customer -->
+            <a th:href="@{/admin}" style="text-decoration: none; color: white; padding-right: 30px;">ADMIN</a> <!-- Link ke halaman Admin -->
+            <a th:href="@{/profil}" style="text-decoration: none; color: white; padding-right: 30px;">PROFIL</a> <!-- Link ke halaman Profil -->
+        </div>
+    </div>
+
+    <div class="container"> <!-- Kontainer utama untuk menampung isi halaman -->
+        <div class="logo"> <!-- Kontainer untuk logo -->
+            <img src="images/logo-trans.png" alt="Logo Money Changer"> <!-- Menampilkan logo transaksi -->
+        </div>
+        <div class="status"> <!-- Kontainer untuk status transaksi -->
+            <i class="bi bi-check-circle" style="color: #73a6a4; font-size: 100px;"></i> <!-- Ikon cek sebagai tanda transaksi berhasil -->
+            <h2>Transaksi Berhasil!</h2> <!-- Teks yang menunjukkan transaksi berhasil -->
+        </div>
+        <div class="details"> <!-- Kontainer untuk detail transaksi -->
+            <!-- Setiap baris menampilkan label dan nilai detail transaksi -->
+            <div class="row">
+                <div class="label">Nama Penerima</div> <!-- Label untuk nama penerima -->
+                <div class="value" th:text="${customerName}"></div> <!-- Menampilkan nama penerima yang diambil dari variabel customerName -->
+            </div>
+            <div class="row">
+                <div class="label">Rekening Tujuan</div> <!-- Label untuk nomor rekening tujuan -->
+                <div class="value" th:text="${ewalletNumber}"></div> <!-- Menampilkan nomor rekening tujuan -->
+            </div>
+            <div class="row">
+                <div class="label">Jenis Transaksi</div> <!-- Label untuk jenis transaksi -->
+                <div class="value" th:text="${transactionType}"></div> <!-- Menampilkan jenis transaksi -->
+            </div>
+            <div class="row">
+                <div class="label">Mata Uang Asal</div> <!-- Label untuk mata uang asal -->
+                <div class="value" th:text="${sourceCurrency}"></div> <!-- Menampilkan mata uang asal -->
+            </div>
+            <div class="row">
+                <div class="label">Mata Uang Tujuan</div> <!-- Label untuk mata uang tujuan -->
+                <div class="value" th:text="${targetCurrency}"></div> <!-- Menampilkan mata uang tujuan -->
+            </div>
+            <div class="row">
+                <div class="label">Hasil Konversi</div> <!-- Label untuk hasil konversi -->
+                <div class="value" th:text="${convertedAmount} + ' ' + ${targetCurrency}"></div> <!-- Menampilkan hasil konversi dengan mata uang tujuan -->
+            </div>
+        </div>                          
+        
+        <!-- Tombol untuk kembali ke halaman Customer -->
+        <div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
+            <a href="/customer" style="padding: 10px 20px; background-color: #73a6a4; color: white; border-radius: 5px; text-decoration: none;">Kembali ke Customer</a>
+        </div>
+    </div>
+</body>
+</html>

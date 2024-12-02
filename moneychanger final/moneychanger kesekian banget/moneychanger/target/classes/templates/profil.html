@@ -1,0 +1,126 @@
+<!DOCTYPE html> <!-- Mendeklarasikan tipe dokumen HTML -->
+<html lang="id"> <!-- Menentukan bahasa halaman web adalah bahasa Indonesia -->
+<head>
+    <meta charset="UTF-8"> <!-- Menentukan encoding karakter yang digunakan -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mengatur tampilan agar responsif pada perangkat mobile -->
+    <title>Money Changer</title> <!-- Menentukan judul halaman web -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}"> <!-- Menghubungkan file CSS untuk styling (menggunakan Thymeleaf) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"> <!-- Menghubungkan ikon Bootstrap dari CDN -->
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar"> <!-- Membuat navbar (navigasi) -->
+        <h1 style="display: flex; align-items: center; gap: 10px;"> <!-- Menampilkan logo dan judul dengan tampilan fleksibel -->
+            <img src="/images/logo.png" style="width: 12%;"> <!-- Menampilkan logo dengan ukuran 12% dari lebar -->
+            Money Changer <!-- Teks judul halaman -->
+        </h1>
+        <div>
+            <!-- Menu navigasi untuk menuju halaman lain -->
+            <a href="/" style="text-decoration: none; color: white; padding-right: 30px;">HOME</a> <!-- Link ke halaman Home -->
+            <a href="/customer" style="text-decoration: none; color: white; padding-right: 30px;">CUSTOMER</a> <!-- Link ke halaman Customer -->
+            <a href="/admin" style="text-decoration: none; color: white; padding-right: 30px;">ADMIN</a> <!-- Link ke halaman Admin -->
+            <a href="/profil" style="text-decoration: none; color: white;">PROFIL</a> <!-- Link ke halaman Profil -->
+        </div>
+    </div>
+
+    <div class="isi"> <!-- Kontainer untuk konten utama -->
+        <div class="dalam"> <!-- Kontainer untuk bagian dalam -->
+            <header> <!-- Header bagian atas -->
+                <img src="/images/profil.png" style="width: 90%; padding-bottom: 20px; display: block; margin:auto;"> <!-- Gambar profil dengan ukuran responsif -->
+                <h2 style="color: hsl(281, 12%, 55%);">PROFIL CART MONEY CHANGER</h2> <!-- Judul sub bagian tentang profil -->
+                <hr> <!-- Garis pemisah -->
+                <h1 style="color: hsl(281, 12%, 55%);">Tentang Cart</h1> <!-- Judul utama tentang Cart -->
+            </header>
+        </div>
+
+        <div class="artikel"> <!-- Kontainer untuk artikel -->
+            <p>
+                Cart Money Changer adalah perusahan yang bergerak dalam industri valuta asing non-perbankan yang didirikan pada 
+                10 November 2024. Berbagai upaya peningkatan kinerja telah ditempuh oleh Cart guna 
+                memenuhi permintaan masyarakat terkait valuta asing. Kompleksitas industri valuta asing menuntut kami untuk terus 
+                belajar dan menjadi lebih peka terhadap beragamnya kebutuhan masyarakat. Seiring dengan kemajuan teknologi keuangan global, 
+                Cart menghadirkan banyak terobosan yang telah disesuaikan dengan kebutuhan pelanggan sebagai wujud komitmen kami untuk 
+                menumbuhkan dan memperkuat bisnis di era digital. Terobosan tersebut mengiringi langkah kami untuk mengembangkan fitur yang dapat 
+                mempermudah masyarakat, yaitu pengiriman uang dalam bentuk e-wallet.
+            </p>
+            <br> <!-- Jarak antar paragraf -->
+            <p>
+                Kami memilih untuk mengambil spesialiasasi dalam industri valuta asing dengan menawarkan pelayanan jasa money changer yang memberikan 
+                rasa kepercayaan, keamanan dan kepuasan bagi pelanggan. Tujuan kami adalah untuk diakui sebagai perusahaan valuta asing terbaik 
+                dimanapun kami berada. Kami tidak pernah berhenti dalam menghadirkan layanan jasa money changer untuk industri valuta asing di 
+                Indonesia melalui inovasi modern untuk memenuhi kebutuhan dan selera pelanggan kami.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white container-fluid w-100" style="padding-top: 20px;"> <!-- Footer dengan latar belakang gelap dan teks putih -->
+        <!-- footer atas -->
+        <div class="container1 text-center text-md-left"> <!-- Kontainer untuk footer atas dengan tata letak teks yang berbeda pada perangkat mobile dan desktop -->
+            <div class="row d-flex justify-content-between flex-wrap"> <!-- Membuat baris dengan distribusi fleksibel -->
+                <!-- kolom pertama -->
+                <div class="col-12 text-start d-flex flex-column"> <!-- Kolom pertama dengan teks disusun secara vertikal -->
+                    <h4 class="pb-3">Cart Head Office</h4> <!-- Judul bagian alamat kantor -->
+                    <p style="padding-bottom: 10px;">Cart Money Changer</p> <!-- Nama bisnis -->
+                    <ul>
+                        <li>
+                            <i class="bi bi-building" style="padding-right: 10px; font-size: 15px;"></i> <!-- Ikon gedung -->
+                            <div>
+                                <p style="margin: 0;">Gedung Cart</p> <!-- Nama gedung -->
+                                <p style="margin: 0;">Jl. Suka Jajan No.1</p> <!-- Alamat jalan -->
+                                <p style="margin: 0;">Jakarta</p> <!-- Kota -->
+                                <p style="margin: 0;">Indonesia</p> <!-- Negara -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- kolom kedua -->
+                <div class="col-12 text-start d-flex flex-column"> <!-- Kolom kedua dengan informasi kontak -->
+                    <h4 class="pb-3">Contact</h4> <!-- Judul bagian kontak -->
+                    <p class="ikon">
+                        <i class="bi bi-telephone-fill"></i> +012 345 67890 <!-- Ikon dan nomor telepon -->
+                    </p>
+                    <p class="ikon">
+                        <i class="bi bi-envelope-fill"></i> moneychanger@cart.com <!-- Ikon dan alamat email -->
+                    </p>
+                    <ul class="list-inline d-flex justify-content-start gap-2"> <!-- Daftar ikon media sosial -->
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-outline-light btn-floating rounded-circle" role="button" style="font-size: 15px;">
+                                <i class="bi bi-twitter"></i> <!-- Ikon Twitter -->
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-outline-light btn-floating rounded-circle" role="button" style="font-size: 15px;">
+                                <i class="bi bi-facebook"></i> <!-- Ikon Facebook -->
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-outline-light btn-floating rounded-circle" role="button" style="font-size: 15px;">
+                                <i class="bi bi-instagram"></i> <!-- Ikon Instagram -->
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- kolom ketiga -->
+                <div class="col-12 text-start d-flex flex-column"> <!-- Kolom ketiga dengan informasi tambahan -->
+                    <p>Cart berizin dan diawasi oleh Cynthia, Albert, Richard dan Thirza</p> <!-- Informasi pengawasan -->
+                    <br>
+                    <p>Cart merupakan money changer yang dibuat untuk projek akhir Object Based Programming</p> <!-- Deskripsi singkat tentang Cart -->
+                </div>
+            </div>
+        </div>
+        <hr class="garis"> <!-- Garis pemisah antara footer atas dan bawah -->
+        <!-- footer bawah -->
+        <div class="container2 d-flex flex-column flex-md-row justify-content-between align-items-center"> <!-- Kontainer untuk footer bawah -->
+            <p class="text-white mb-0 me-auto">© Cart, All Rights Reserved.</p> <!-- Hak cipta -->
+            <div class="d-flex gap-3"> <!-- Tautan footer bawah -->
+                <a href="#" class="pendek">Home</a> <!-- Tautan ke halaman Home -->
+                <a href="#" class="pendek">Cookies</a> <!-- Tautan ke halaman Cookies -->
+                <a href="#" class="pendek">Help</a> <!-- Tautan ke halaman Help -->
+                <a href="#" class="pendek">FAQs</a> <!-- Tautan ke halaman FAQs -->
+            </div>
+        </div>        
+    </footer>
+    
+</body>
+</html>

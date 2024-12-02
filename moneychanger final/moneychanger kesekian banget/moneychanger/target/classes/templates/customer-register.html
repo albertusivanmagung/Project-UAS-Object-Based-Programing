@@ -1,0 +1,44 @@
+<!DOCTYPE html> <!-- Mendeklarasikan tipe dokumen HTML -->
+<html lang="id"> <!-- Menentukan bahasa halaman web adalah bahasa Indonesia -->
+<head>
+    <meta charset="UTF-8"> <!-- Menentukan encoding karakter yang digunakan -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mengatur tampilan agar responsif pada perangkat mobile -->
+    <link rel="stylesheet" th:href="@{/css/styles.css}"> <!-- Menghubungkan file CSS untuk styling (menggunakan Thymeleaf) -->
+    <title>Register Customer - Money Changer</title> <!-- Menentukan judul halaman web -->
+    <meta http-equiv="refresh" content="5;url=/customer" th:if="${success}">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar"> <!-- Membuat navbar (navigasi) -->
+    <h1 style="display: flex; align-items: center; gap: 10px;"> <!-- Menampilkan logo dan judul dengan tampilan fleksibel -->
+        <img src="/images/logo.png" style="width: 12%;"> <!-- Menampilkan logo dengan ukuran 12% dari lebar -->
+        Money Changer <!-- Teks judul halaman -->
+    </h1>
+    <div>
+        <!-- Menu navigasi untuk menuju halaman lain -->
+        <a href="/" style="text-decoration: none; color: white; padding-right: 30px;">HOME</a> <!-- Link ke halaman Home -->
+        <a href="/customer" style="text-decoration: none; color: white; padding-right: 30px;">CUSTOMER</a> <!-- Link ke halaman Customer -->
+        <a href="/admin" style="text-decoration: none; color: white; padding-right: 30px;">ADMIN</a> <!-- Link ke halaman Admin -->
+        <a href="/profil" style="text-decoration: none; color: white;">PROFIL</a> <!-- Link ke halaman Profil -->
+    </div>
+</div>
+
+<!-- Customer Registration -->
+<div id="customerSection"> <!-- Section untuk pendaftaran customer -->
+    <form id="customerRegister" action="/customer/register" method="post" class="centered-regis" display="block"> <!-- Form untuk pendaftaran customer -->
+        <h2>Daftar sebagai Customer</h2>
+
+        <input type="text" name="username" placeholder="Nama Lengkap" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="tel" name="no_telp" placeholder="Nomor Telepon" required pattern="[0-9]{10,13}" title="Masukkan nomor telepon yang valid (10-13 digit)">
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirmPassword" placeholder="Konfirmasi Password" required>
+        <button type="submit">Daftar</button>
+        <p style="color: red;" th:text="${error}"></p> <!-- Menampilkan pesan error jika ada -->
+        <p style="color: green;" th:text="${success}"></p> <!-- Menampilkan pesan success jika ada -->
+    </form>
+</div>
+
+</body>
+</html>
